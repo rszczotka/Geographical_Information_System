@@ -1,0 +1,9 @@
+Dodawanie obiektu: 2+
+Propozycja dodania obiektu: 1
+Ogólna informacja o obiekcie: 0+
+Podgląd wpisów: 1+
+Dodawanie wpisów 1+
+Edycja wpisów: 2+
+Usuwanie wpisów: 2+
+Panel Admina 3+
+//TODO podgląd kto ostatni dokonał zmiany we wpisie 3+

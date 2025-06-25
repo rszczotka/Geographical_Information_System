@@ -1,0 +1,55 @@
+CREATE TABLE Wpisy_obiekt(
+    id_wpis INT PRIMARY KEY AUTO_INCREMENT,
+    id_obiekt INT,
+    tresc_wpisu VARCHAR(2000),
+    login_dodajacego VARCHAR(255),
+    data_dodania DATETIME
+);
+
+CREATE TABLE Obiekty(
+    id_obiekt INT PRIMARY KEY AUTO_INCREMENT,
+    nazwa_obiekt VARCHAR(255),
+    miejscowosc VARCHAR(100),
+    kod_pocztowy VARCHAR(8),
+    ulica VARCHAR(100),
+    nr_budynku VARCHAR(100),
+    opis VARCHAR(5000)
+);
+
+CREATE TABLE uzytkownicy(
+    id_uzytkownika INT PRIMARY KEY AUTO_INCREMENT,
+    login VARCHAR(255),
+    haslo VARCHAR(255),
+    email VARCHAR(255),
+    imie VARCHAR(255),
+    nazwisko VARCHAR(255),
+    poziom_uprawnien ENUM('0', '1', '2', '3', '4') DEFAULT '0',
+);
+
+CREATE TABLE Propozycja_dodania_obiektu(
+    id_propozycji INT PRIMARY KEY AUTO_INCREMENT,
+    nazwa_obiekt VARCHAR(255),
+    miejscowosc VARCHAR(100),
+    kod_pocztowy VARCHAR(8),
+    ulica VARCHAR(100),
+    nr_budynku VARCHAR(100),
+    opis VARCHAR(5000), 
+    zawartosc_obrazu LONGBLOB,
+    login_proponujacego VARCHAR(255),
+    data_dodania_propozycji DATETIME,
+    status_propozycji ENUM('Oczekujace', 'Zaakceptowane', 'Odrzucone') DEFAULT 'Oczekujace',
+    login_recenzent VARCHAR(255),
+    data_recenzji_propozycji DATETIME,
+    komentarz_recenzenta VARCHAR(5000)
+);
+
+CREATE TABLE Obrazy(
+    id_obrazu INT PRIMARY KEY AUTO_INCREMENT,
+    id_obiekt INT,
+    zawartosc_obrazu LONGBLOB
+);
+
+
+
+ALTER TABLE Wpisy_obiekt ADD CONSTRAINT FK_Wpisy_obiekt_id_obiekt FOREIGN KEY (id_obiekt) REFERENCES Obiekty(id_obiekt) ON DELETE CASCADE;
+ALTER TABLE Obrazy ADD CONSTRAINT FK_Obrazy_id_obiekt FOREIGN KEY (id_obiekt) REFERENCES Obiekty(id_obiekt) ON DELETE CASCADE;
